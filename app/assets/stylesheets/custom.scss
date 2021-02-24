@@ -156,9 +156,10 @@ form {
       background-color: $primary-color-light;
     }
 
-    input } [type="checkbox"] {
+    input { 
+      [type="checkbox"] 
   }
-  
+
   .actions {
     display: flex;
     justify-content: center;
