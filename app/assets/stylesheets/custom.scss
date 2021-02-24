@@ -149,14 +149,14 @@ form {
     margin-bottom: 8px;
   }
 
-input {
+  input {
     width: 100%;
     border: 1px solid $divider-color;
     border-radius: 4px;
     padding: 8px;
     background-color: $primary-color-light;
   }
-  
+
   .actions {
     display: flex;
     justify-content: center;
