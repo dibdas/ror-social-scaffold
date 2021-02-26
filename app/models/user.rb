@@ -11,6 +11,7 @@ class User < ApplicationRecord
   has_many :likes, dependent: :destroy
 end
 
+ # Users who have yet to confirme friend request
 def confirm_friend(user)
   friendship = inverse_friendships.find{|friendship| friendship.user == user}
   friendship.confirmed = true
