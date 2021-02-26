@@ -17,6 +17,11 @@ def confirm_friend(user)
   friendship.confirmed = true
   friendship.save
 end
+
 def friend_requests
   inverse_friendships.map{|friendship| friendship.user if !friendship.confirmed}.compact
 end
+
+def friend?(user)
+    friends.include?(user)
+  end
