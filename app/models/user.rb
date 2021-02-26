@@ -10,3 +10,12 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
 end
+
+def confirm_friend(user)
+  friendship = inverse_friendships.find{|friendship| friendship.user == user}
+  friendship.confirmed = true
+  friendship.save
+end
+def friend_requests
+  inverse_friendships.map{|friendship| friendship.user if !friendship.confirmed}.compact
+end
