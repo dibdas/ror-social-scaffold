@@ -25,3 +25,7 @@ end
 def friend?(user)
     friends.include?(user)
   end
+
+  def pending_friends
+    friendships.map{|friendship| friendship.friend if !friendship.confirmed}.compact
+  end
