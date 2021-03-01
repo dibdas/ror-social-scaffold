@@ -1,1 +1,16 @@
-
+<section class="user-section">
+  <h2><%= "Name: #{@user.name}" %></h2>
+  <%= render 'useraction',user:@user %>
+  <% if current_user == @user%>
+  <article class="timeline">
+    <h3>pending invitations:</h3>
+      <%= render @pending_invitations %>
+  </article>
+  <article class="timeline">
+    <h3>Recent posts:</h3>
+    <ul class="posts">
+      <%= render @posts %>
+    </ul>
+  </article>
+  
+</section>
