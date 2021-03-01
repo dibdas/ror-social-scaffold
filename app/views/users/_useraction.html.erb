@@ -1,2 +1,9 @@
-
-
+<h1>user action</h1>
+<% if current_user.friend_request_pending_from?(user)%>
+<%= form_with url:user_friendship_path(user),method: :patch do |f|%>
+<%= f.submit 'accept request'%>
+<%end%>
+<%= form_with url:user_friendship_path(user),method: :delete do |f|%>
+<%= f.submit 'decline request'%>
+<%end%>
+<%end%>
