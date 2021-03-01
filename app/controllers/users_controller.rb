@@ -11,9 +11,10 @@ class UsersController < ApplicationController
   end
 
   def update
-        @user = User.find(params[:id])
-    end
-    def delete
-        @user = User.find(params[:id])
-    end
+    @user = User.find(params[:id])
+  end
+
+  def delete
+    @user = User.find(params[:id])
+  end
 end
