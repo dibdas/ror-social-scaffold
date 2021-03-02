@@ -50,7 +50,7 @@ class User < ApplicationRecord
   end
 
   def friend_request_pending_to?(user)
-    Friendship.where(sender: self, requester: user, status: 'pending').exists?
+    Friendship.where(sender: self, receiver: user, status: 'pending').exists?
   end
 
   def no_relation?(user)
