@@ -13,6 +13,7 @@ RSpec.describe User, type: :model do
     it { is_expected.to validate_presence_of(:name) }
     it { is_expected.to validatelength_of(:name).is_at_most(20) }
   end
+
   describe '#send_friend_requests_to' do
     context 'one time request' do
       it 'send friend request with pending status' do
@@ -23,6 +24,7 @@ RSpec.describe User, type: :model do
         expect(user.active_friendships.first.status).to eq('pending')
       end
     end
+
     it 'raise an error if user send multiple request' do
       user = create(:user)
       another_user = create(:user)
@@ -31,6 +33,7 @@ RSpec.describe User, type: :model do
     end
   end
 end
+
   describe '#accept_friend_request_of' do
     it 'accept friend request ' do
       user = create(:user)
@@ -41,6 +44,7 @@ end
       expect(another_user.passive_friendships.first.status).to eq('accepted')
     end
   end
+  
   describe '#delete_friend_request_of' do
     it 'delete friend request of the sender' do
       user = create(:user)
@@ -50,6 +54,7 @@ end
       expect(user.receivers.map(&:id)).to match_array([])
       expect(another_user.receivers.map(&:id)).to match_array([])
     end
+
   end
   describe '#friends' do
       it 'list of all friends of the user' do
@@ -60,6 +65,7 @@ end
         expect(user.friends.map(&:id)).to match_array([another_user.id])
         expect(another_user.friends.map(&:id).to match_array([user.id])
       end
+
       it 'does not list the friends that have pending status' do
         user = create(:user)
         another_user = create(:user)
@@ -67,6 +73,7 @@ end
         expect (user.friends.count).to be_zero
       end
   end
+
   describe '#friend?' do
       it 'returns true if the user is friend of another user' do
         user = create(:user)
@@ -76,6 +83,7 @@ end
         
         expect(user.friend?(another_user)).to be_truthy
       end
+
       it 'return false if the user is not  friend of another user' do
         user = create(:user)
         another_user = create(:user)
