@@ -32,10 +32,6 @@ RSpec.describe User, type: :model do
       expect { user.send_friend_requests_to(another_user) }.to raise_error(ActiveRecord::RecordNotUnique)
     end
   end
-<<<<<<< HEAD
-=======
-end
->>>>>>> efe91440a2ec02896ad0e585c6d25b492341ecd7
 
   describe '#accept_friend_request_of' do
     it 'accept friend request ' do
@@ -47,11 +43,7 @@ end
       expect(another_user.passive_friendships.first.status).to eq('accepted')
     end
   end
-<<<<<<< HEAD
 
-=======
-  
->>>>>>> efe91440a2ec02896ad0e585c6d25b492341ecd7
   describe '#delete_friend_request_of' do
     it 'delete friend request of the sender' do
       user = create(:user)
@@ -60,8 +52,8 @@ end
       another_user.delete_friend_request_of(user)
       expect(user.receivers.map(&:id)).to match_array([])
       expect(another_user.receivers.map(&:id)).to match_array([])
+    end
   end
-<<<<<<< HEAD
 
   describe '#friends' do
     it 'list of all friends of the user' do
@@ -100,43 +92,3 @@ end
     end
   end
 end
-=======
-end 
-
-  describe '#friends' do
-      it 'list of all friends of the user' do
-        user = create(:user)
-        another_user = create(:user)
-        user.send_friend_requests_to(another_user)
-        another_user.accept_friend_request_of(user)
-        expect(user.friends.map(&:id)).to match_array([another_user.id])
-        expect(another_user.friends.map(&:id).to match_array([user.id])
-      end
-
-      it 'does not list the friends that have pending status' do
-        user = create(:user)
-        another_user = create(:user)
-        another_user.send_friend_requests_to(user)
-        expect (user.friends.count).to be_zero
-      end
-  end
-
-  describe '#friend?' do
-      it 'returns true if the user is friend of another user' do
-        user = create(:user)
-        another_user = create(:user)
-        user.send_friend_requests_to(another_user)
-        another_user.accept_friend_request_of(user)
-        
-        expect(user.friend?(another_user)).to be_truthy
-      end
-
-      it 'return false if the user is not  friend of another user' do
-        user = create(:user)
-        another_user = create(:user)
-        user.send_friend_requests_to(another_user)
-        expect(user.friend?(another_user)).to be_falsy
-      end
-  end
-end 
->>>>>>> efe91440a2ec02896ad0e585c6d25b492341ecd7
