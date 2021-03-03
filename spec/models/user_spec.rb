@@ -70,7 +70,7 @@ RSpec.describe User, type: :model do
       user = create(:user)
       another_user = create(:user)
       another_user.send_friend_requests_to(user)
-      expect (user.friends.count).to be_zero
+      expect(user.friends.count).to be_zero
     end
   end
 
