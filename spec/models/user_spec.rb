@@ -54,6 +54,7 @@ end
       expect(user.receivers.map(&:id)).to match_array([])
       expect(another_user.receivers.map(&:id)).to match_array([])
   end
+end 
 
   describe '#friends' do
       it 'list of all friends of the user' do
@@ -89,4 +90,5 @@ end
         user.send_friend_requests_to(another_user)
         expect(user.friend?(another_user)).to be_falsy
       end
-end
+  end
+end 
