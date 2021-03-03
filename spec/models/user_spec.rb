@@ -53,9 +53,8 @@ end
       another_user.delete_friend_request_of(user)
       expect(user.receivers.map(&:id)).to match_array([])
       expect(another_user.receivers.map(&:id)).to match_array([])
-    end
-
   end
+  
   describe '#friends' do
       it 'list of all friends of the user' do
         user = create(:user)
