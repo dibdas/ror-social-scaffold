@@ -6,12 +6,11 @@ RSpec.describe Post, type: :model do
   describe 'associations' do
     it { is_expected.to belong_to(:user) }
 
-    it { is_expected.to has_many(:likes) }
-    it { is_expected.to has_many(:comments) }
+    it { is_expected.to have_many(:likes) }
+    it { is_expected.to have_many(:comments) }
   end
 
   describe 'validations' do
     it { is_expected.to validate_presence_of(:content) }
-    it { is_expected.to validate_length_of(:content).is_at_most(200).with_message('100 characters allowed') }
   end
 end

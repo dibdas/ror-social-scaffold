@@ -16,7 +16,7 @@ class User < ApplicationRecord
 
   def friends
     friends_array = active_friendships.map { |f| f.receiver if f.accepted? }
-    friends_array += passive_friendships.map { |f| f.requester if f.accepted? }
+    friends_array += passive_friendships.map { |f| f.sender if f.accepted? }
     friends_array.compact
   end
 
@@ -30,8 +30,8 @@ class User < ApplicationRecord
     active_friendships.create(receiver_id: user.id)
   end
 
-  def accept_friend_request_of(_user)
-    friend_request = passive_friendships.map { |f| f.sender if f.pending? }
+  def accept_friend_request_of(user)
+    friend_request = passive_friendships.find_by(sender_id: user.id)
     friend_request.accepted!
   end
 

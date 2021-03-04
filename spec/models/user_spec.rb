@@ -20,7 +20,7 @@ RSpec.describe User, type: :model do
         user = create(:user)
         another_user = create(:user)
         user.send_friend_requests_to(another_user)
-        expect(user.receivers.map(&:id)).to match_array([another_user.id])
+        expect(user.senders.map(&:id)).to match_array([another_user.id])
         expect(user.active_friendships.first.status).to eq('pending')
       end
     end
