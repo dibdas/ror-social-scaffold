@@ -53,11 +53,11 @@ class User < ApplicationRecord
     Friendship.where(sender: self, receiver: user, status: 'pending').exists?
   end
 
-  def mutual_friends_with(user)
-    mutual_friends = friend_lists + user.friend_lists
+  def mutual_friends(user)
+    mutual_friends = friends + user.friends
 
     mutual_friends.reject do |friend|
-      friend.id == id || friend.id == user.id || !friend?(friend) || !user.friend?(friend)
+      friend.id == id || !friend?(friend) || !user.friend?(friend)
     end.uniq
   end
 
