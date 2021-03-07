@@ -10,14 +10,14 @@ class User < ApplicationRecord
   has_many :comments, dependent: :destroy
   has_many :likes, dependent: :destroy
   has_many :active_friendships, class_name: 'Friendship', foreign_key: :sender_id, dependent: :destroy
-  has_many :senders, through: :active_friendships, source: :receiver
+  has_many :senders, through: :active_friendships # , source: :receiver
   has_many :passive_friendships, class_name: 'Friendship', foreign_key: :receiver_id, dependent: :destroy
-  has_many :receivers, through: :passive_friendships, source: :sender
+  has_many :receivers, through: :passive_friendships # , source: :sender
 
   def friends
-    friends_array = active_friendships.map { |f| f.receiver if f.accepted? }
-    friends_array += passive_friendships.map { |f| f.sender if f.accepted? }
-    friends_array.compact
+    senders
+      .includes(:active_friendships)
+      .where('friendship.status = true')
   end
 
   # Users who have yet to confirme friend requests
@@ -51,6 +51,14 @@ class User < ApplicationRecord
 
   def friend_request_pending_to?(user)
     Friendship.where(sender: self, receiver: user, status: 'pending').exists?
+  end
+
+  def mutual_friends(user)
+    mutual_friends = friends + user.friends
+
+    mutual_friends.reject do |friend|
+      friend.id == id || !friend?(friend) || !user.friend?(friend)
+    end.uniq
   end
 
   def no_relation?(user)
