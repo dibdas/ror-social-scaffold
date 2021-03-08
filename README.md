@@ -66,8 +66,7 @@ To make sure the linters' checks using Github Actions work properly, you should 
 
 ### Deployment
 
-TBA
-
+https://nameless-scrubland-84667.herokuapp.com/users/sign_in
 ## Authors
 
 👤 **Uduak John**
