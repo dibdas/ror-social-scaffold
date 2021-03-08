@@ -9,7 +9,7 @@ class UsersController < ApplicationController
     @user = User.find(params[:id])
     @posts = @user.posts.ordered_by_most_recent
     @pending_friends = @user.pending_friends
-    @mutual_friends = current_user.mutual_friends(@user)
+    @mutual_friends = current_user.senders.pluck(:receiver_id)
   end
 
   def update
