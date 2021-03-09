@@ -8,5 +8,15 @@ class UsersController < ApplicationController
   def show
     @user = User.find(params[:id])
     @posts = @user.posts.ordered_by_most_recent
+    @pending_friends = @user.pending_friends
+    @mutual_friends = current_user.senders.pluck(:receiver_id)
+  end
+
+  def update
+    @user = User.find(params[:id])
+  end
+
+  def delete
+    @user = User.find(params[:id])
   end
 end

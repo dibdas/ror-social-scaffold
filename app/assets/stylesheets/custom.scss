@@ -139,26 +139,22 @@ a {
 form {
   width: 80%;
   margin: 8px 0;
+}
 
-  .field {
+.field {
+  width: 100%;
+  padding: 8px 0;
+
+  label {
+    margin-bottom: 8px;
+  }
+
+  input {
     width: 100%;
-    padding: 8px 0;
-
-    label {
-      margin-bottom: 8px;
-    }
-
-    input {
-      width: 100%;
-      border: 1px solid $divider-color;
-      border-radius: 4px;
-      padding: 8px;
-      background-color: $primary-color-light;
-    }
-
-    input[type="checkbox"] {
-      width: fit-content;
-    }
+    border: 1px solid $divider-color;
+    border-radius: 4px;
+    padding: 8px;
+    background-color: $primary-color-light;
   }
 
   .actions {
